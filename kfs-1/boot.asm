@@ -32,6 +32,11 @@ start:
     call vga_print
     add esp, 4              ; clean up stack argument
 
+    ; push args in cdecl order (right to left)
+    push ebx,               ; multiboot_info
+    push eax                ; magic number
+    call kmain
+
     call vga_clear          ; clear VGA text buffer
     push HALT_MESSAGE
     call vga_print
@@ -39,6 +44,8 @@ start:
 
     jmp halt
 
+
+extern kmain
 
 ; vga_clear -- clears the sreen
 vga_clear:
@@ -91,7 +98,7 @@ halt:
     jmp halt
 
 
-section .data:
+section .data
 align 8
 STARTING_KERNEL db "Starting Kernel", 0
 HALT_MESSAGE DB "HALTING..."
