@@ -13,17 +13,24 @@ The first milestone of the KFS project. Implements a Multiboot2-compliant kernel
 ## Build
 
 ```bash
-make          # Build kernel.elf (default)
+make          # Build kernel.elf
 make iso      # Build bootable ISO
 make run      # Build and run in QEMU
-make debug    # Run in QEMU with GDB server, then attach GDB
+make debug    # Build and run with GDB server (-S -s)
 make clean    # Remove build artifacts
 make help     # Show available targets
 ```
 
 ## Debugging
 
-`make debug` starts QEMU paused with a GDB server and attaches GDB automatically using `gdb.cfg`, which connects to `localhost:1234`, opens the register and source layout, sets a breakpoint at `start`, and continues to it.
+In a separate terminal after `make debug`:
+
+```bash
+make debug    # in terminal 1 (starts QEMU paused)
+gdb -x gdb.cfg kernel.elf   # in terminal 2
+```
+
+`gdb.cfg` connects to QEMU's GDB server and sets initial breakpoints.
 
 ## Project Layout
 
