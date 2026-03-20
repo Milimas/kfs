@@ -1,6 +1,7 @@
+# Makefile -- kernal Makefile
 AS = nasm
-AFLAGS = -f elf32
-CFLAGS = -m32 -fno-builtin -fno-exceptions -fno-stack-protector -fno-rtti -nostdlib -nodefaultlibs
+AFLAGS = -f elf32 -g -F dwarf
+CFLAGS = -m32 -fno-builtin -fno-exceptions -fno-stack-protector -fno-rtti -nostdlib -nodefaultlibs -g
 LDFLAGS = -m elf_i386
 LD = ld
 CC = gcc
