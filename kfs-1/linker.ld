@@ -1,3 +1,4 @@
+/* linker.ld -- kernal linker file */
 OUTPUT_FORMAT("elf32-i386") ;
 ENTRY(start) ;                  /* Entry symbol in boot.asm */
 

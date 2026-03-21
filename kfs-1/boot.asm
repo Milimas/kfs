@@ -26,16 +26,21 @@ start:
     ; ! Do not zero the segment registers in 32-bit protected mode after multiboot,
     ; The segments are already set up by GRUB Zeroing them can cause issues.
     mov esp, stack_top
+    push eax                ; save magic
+    push ebx                ; save mutiboot info
     
     call vga_clear          ; clear VGA text buffer
     push STARTING_KERNEL
     call vga_print
     add esp, 4              ; clean up stack argument
 
+    pop ebx
+    pop eax
     ; push args in cdecl order (right to left)
-    push ebx,               ; multiboot_info
+    push ebx                ; multiboot_info
     push eax                ; magic number
     call kmain
+    add esp, 8              ; clean up stack argument
 
     call vga_clear          ; clear VGA text buffer
     push HALT_MESSAGE
@@ -101,7 +106,7 @@ halt:
 section .data
 align 8
 STARTING_KERNEL db "Starting Kernel", 0
-HALT_MESSAGE DB "HALTING..."
+HALT_MESSAGE DB "HALTING...", 0
 
 
 section .bss
