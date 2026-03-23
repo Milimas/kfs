@@ -59,3 +59,23 @@ dkms.conf
 *.elf
 *.iso
 iso/boot/kernel.elf
+
+# Build directories
+build/
+
+# Font generated artifacts
+*.psf
+*.bdf
+kfs-1/font/bdf/
+kfs-1/font/psf/
+
+# Font screenshots
+kfs-1/font/screen/
+kfs-1/font/Screenshot_*.png
+
+# ISO staging artifacts
+kfs-1/iso/boot/font.psf
+kfs-1/iso/boot/grub/grub.cfg
+
+# Stray files
+kfs-1/256

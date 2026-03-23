@@ -10,8 +10,8 @@ PHDRS
 
 SECTIONS
 {
-    /* Code section at 0x100000 1MB */
-    . = 0x00100000 ;
+    /* Code section at 0x200000 2MB */
+    . = 0x00200000 ;
 
     /* Multiboot2 header*/
     .multiboot : {  *(.multiboot) } :text
